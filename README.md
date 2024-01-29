@@ -8,9 +8,9 @@ This project is dedicated to providing a publicly accessible, well-curated versi
 
 ## Contents
 
-### Bioinformatics pipeline
+#### Bioinformatics pipeline
 
-### Statistical analysys
+#### Statistical analysys
 
 ## Data availability
 
