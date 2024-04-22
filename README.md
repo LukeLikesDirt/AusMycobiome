@@ -1,4 +1,4 @@
-# The Australian Microbiome soil ITS1 dataset
+# The Australian Microbiome dataset for soil fungi
 
 This repository contains the code associated to the paper:
 
@@ -20,7 +20,9 @@ Corresponding author: Luke Florence (L.Florence@latrobe.edu.au)
 
 DNA metabarcoding has played a pivotal role in advancing our understanding of soil-inhabiting fungi worldwide. The [Australian Microbiome Initiative](https://www.australianmicrobiome.com/) has produced an extensive soil fungal dataset that covers more than 2000 plots in a variety of bioregions and ecosystem types. The integration of Australian microbiome sequence data into platforms like the Global Biodiversity Information Facility holds immense promise to provide valuable insights into fungal biodiversity and ecology in the Southern Hemisphere. However, recent studies raised concerns about the uneven quality of the Australian Microbiome fungal dataset, highlighting overinflated diversity and erroneous species occurrences (false positives). To address these concerns, we aim to generate a robust dataset that can be leveraged by end-users interested in the conservation and ecology of fungi in soils. We reanalysed the Australian Microbiome fungal dataset using a conservative approach following best practices in metabarcoding and carefully ground-truthed our methodology by comparing our contemporary dataset to studies conducted on historical versions the dataset. This resource will significantly benefit future research on soil fungi in Australia and beyond.
 
-The scripts used to process the raw data and generate the final dataset are available in the `code` directory. The associated raw data files can be obtained from the [Bioplatforms Australia data portal](https://data.bioplatforms.com/organization/australian-microbiome) by selecting ITS data from terrestrial soil environments. The final dataset is available on the dedicated [figshare data repository]().
+The scripts used to process the raw data and generate the final dataset are available in the `code/bioinformatics` directory. The associated raw data files can be obtained from the [Bioplatforms Australia data portal](https://data.bioplatforms.com/organization/australian-microbiome) by selecting ITS data from terrestrial soil environments. The final dataset is available on the dedicated [figshare data repository]().
+
+The scripts used for the validation of our dataset are available in the `code/technical_validation` directory. The associated raw data files can be obtained from the `data` directory.
 
 ## Repository contents
 
