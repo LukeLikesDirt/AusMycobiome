@@ -60,22 +60,22 @@ The **map.pl** script is used by the **04.Chimera_detection.sh** script to map d
 
 This project was developed using a Unix computing environment and the following software:
 
-*[R](https://cran.r-project.org/) version 4.3.1 -- "Beagle Scouts"
-*[Trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic) version 0.36
-*[ITSxpress](https://github.com/USDA-ARS-GBRU/itsxpress) v2.0.0
-*[VSEARCH](https://github.com/torognes/vsearch) v2.22.1
-*[FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) v0.12.1
-*[MultiQC](https://multiqc.info/) version 1.15
-*[DADA2](https://benjjneb.github.io/dada2/) version 3.18
-*[seqinr](https://github.com/lbbe-software/seqinr) version 4.2-30
-*[here](https://here.r-lib.org/) version 1.0.1
-*[tidyverse](https://www.tidyverse.org/) version 2.0.0
-*[ITSx](https://microbiology.se/software/itsx/) version 1.1.3
-*[HMMER](http://hmmer.org/) version 3.1b2 
-*[Perl](https://www.perl.org/get.html) version 5.32.1
-*[BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi) version 2.14.1
-*[data.table](https://github.com/Rdatatable/data.table) version 1.14.10
-*[ggpubr](https://github.com/kassambara/ggpubr) version 0.4.0
-*[rnaturalearth]()
-*[rnaturalearthdata]()
-*[patchwork]()
+* [R](https://cran.r-project.org/) version 4.3.1 -- "Beagle Scouts"
+* [Trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic) version 0.36
+* [ITSxpress](https://github.com/USDA-ARS-GBRU/itsxpress) v2.0.0
+* [VSEARCH](https://github.com/torognes/vsearch) v2.22.1
+* [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) v0.12.1
+* [MultiQC](https://multiqc.info/) version 1.15
+* [DADA2](https://benjjneb.github.io/dada2/) version 3.18
+* [seqinr](https://github.com/lbbe-software/seqinr) version 4.2-30
+* [here](https://here.r-lib.org/) version 1.0.1
+* [tidyverse](https://www.tidyverse.org/) version 2.0.0
+* [ITSx](https://microbiology.se/software/itsx/) version 1.1.3
+* [HMMER](http://hmmer.org/) version 3.1b2 
+* [Perl](https://www.perl.org/get.html) version 5.32.1
+* [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi) version 2.14.1
+* [data.table](https://github.com/Rdatatable/data.table) version 1.14.10
+* [ggpubr](https://github.com/kassambara/ggpubr) version 0.4.0
+* [rnaturalearth]()
+* [rnaturalearthdata]()
+* [patchwork]()
