@@ -1,11 +1,14 @@
 # The Australian Microbiome soil ITS1 dataset
 
-This repository contains the code associated to the paper: The Australian Microbiome initiative for accurate detection and identification of fungi.
+This repository contains the code associated to the paper:
 
-Authors
-Luke Florence<sup>1<sup>, Sean Tomlinson<sup>2<sup>, Marc Freestone<sup>3<sup>, John Morgan<sup>1<sup>, Jen Wood<sup>4<sup>, Camille Truong<sup>3<sup>
+**The Australian Microbiome Initiative for accurate detection and identification of fungi**
 
-Affiliations
+Authors:
+
+Luke Florence<sup>1</sup>, Sean Tomlinson<sup>2</sup>, Marc Freestone<sup>3</sup>, John Morgan<sup>1</sup>, Jen Wood<sup>4</sup>, Camille Truong<sup>3</sup>
+
+Affiliations:
 1. Department of Environment and Genetics, La Trobe University, Bundoora, VIC, 3083, Australia.
 2. Biodiversity and Conservation Science, Department of Biodiversity, Conservation and Attractions, Kensington, WA, 6151, Australia.
 3. Royal Botanic Gardens Victoria, Melbourne, VIC, 3004, Australia.
