@@ -54,7 +54,7 @@ The scripts used to process the raw data and generate the final dataset are avai
 **10.Collect_metadata.R**
 
 **Other scripts:**
-The **map.pl** script is used by the **04.Chimera_detection.sh** script to map dereplicated reads back to their original samples. The *functions.R* script contains custom functions used in multiple R scripts within this repository.
+The **map.pl** script is used by the **04.Chimera_detection.sh** script to map dereplicated reads back to their original samples. The **functions.R** script contains custom functions used in multiple R scripts within this repository.
 
 ## Dependencies
 
