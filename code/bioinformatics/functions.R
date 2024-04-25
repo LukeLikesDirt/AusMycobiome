@@ -114,18 +114,7 @@ calculate_margin_of_error <- function(
 }
 
 #### Annotate blast hits based on thresholds ###################################
-# ,
-# genus = genus,
-# family = family,
-# order = order,
-# class = class,
-# phylum = phylum,
-# 
-# genus_threshold = genus_threshold,
-# family_threshold = family_threshold,
-# order_threshold = order_threshold,
-# class_threshold = class_threshold,
-# phylum_threshold = phylum_threshold
+
 annotate_blast_hits <- function(data) {
   
   data %>%
