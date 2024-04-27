@@ -19,7 +19,7 @@ source("code/bioinformatics/functions.R")
 # Read in OTUs
 OTUs <- fread(
   "data/bioinformatics/08.OTUs/OTUs_abundance_filtered.csv"
-  ) %>%
+) %>%
   select(OTU_ID)
 
 # Read in the taxa tables and filter to OTUs
@@ -27,7 +27,7 @@ taxa <- left_join(
   OTUs,
   fread("data/bioinformatics/09.Taxonomy/BLAST_best_10.csv", sep = ";"),
   by = "OTU_ID"
-  ) %>%
+) %>%
   # Rename taxa levels - remove prefixes
   mutate_all(~gsub("^.*__", "", .)) %>%
   # Abundance, similarity, coverage (to percent) and e-value as numeric

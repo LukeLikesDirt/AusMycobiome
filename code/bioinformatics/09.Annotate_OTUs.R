@@ -1384,10 +1384,10 @@ OTUs_abundance_filtered <- fread(
     names_from = "sample",
     values_from = "abundance"
   ) %>%
-  # Removed because < 5000 reads: s13482, s13514, s7051, s13556, s19412
-  # Removed because these are identified later identified as richness outlines
-  # and are misassignments from mainland Australia: s13619, s13561
-  select(-c(s13482, s13514, s7051, s13556, s19412, s13619, s13561, s13607)) %>%
+  # Removed because < 5000 reads: s13514, s13482, s7051, s13556, s19412
+  # Removed because these are identified as sample misassignments from mainland
+  # Australia: s13619, s13561
+  select(-c(s13514, s13482, s7051, s13556, s19412, s13619, s13561)) %>%
   # Remove any redundant OTUs
   filter(
     rowSums(select(., -OTU_ID)) > 0
@@ -1433,3 +1433,4 @@ fungi_threshold %>%
 
 # Clear the environment
 rm(list = ls())
+
