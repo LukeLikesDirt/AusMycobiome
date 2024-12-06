@@ -1,5 +1,5 @@
 
-cutoff_file_path <- "./dnabarcoder/ITS1_cutoffs.json.txt"
+cutoff_file_path <- "./dnabarcoder/ITS1_cutoffs.txt"
 require(Biostrings)
 require(data.table)
 require(tidyverse)
