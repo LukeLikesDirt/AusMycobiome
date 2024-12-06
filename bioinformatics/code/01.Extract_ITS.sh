@@ -37,15 +37,22 @@
 
 # Notes:
 # --------------------------------------------------------------------------- #
-# The sequencing runs are processed separately prior to denoising to improve
-# error rate estimations.
+# The chosen PCR primers of the Australian Microbiome, ITS1F and ITS4, targeted
+# the full ITS region, leading to two amplicons (i.e. ITS1 for forward 
+# sequences and ITS2 for reverse sequences) from which reads were generally
+# too short to be merged. We therefore focus on forward reads that targt the 
+# ITS1.
 #
-# Depending on your system, ITS extraction for each libray can take in excess 
-# of one day so parallelise the ITSxpress step as needed.
+# Ideally, partially trimmed ITS1 reads (i.e., those containing the SSU region
+# but with the 5.8S region removed) would be retained to capture fungi with long
+# (>230 bp) ITS1 sequences. However, ASV calling on partially trimmed ITS reads
+# is not recommended. To address underlying quality issues in the Australian 
+# Microbiome data, we have chosen to use DADA2 and therefore do not retiain 
+# partially trimmed ITS1. For guidance on retaining partially trimmed ITS1 reads,
+# see: https://github.com/USDA-ARS-GBRU/itsxpress/issues/50
 #
-# Primers could not be detected in the AusMicrobiome dataset due to the overall
-# low-quality of the reads on distal ends (i.e. don't bother attempting primer 
-# removal).
+# ITS extraction for each libray can take in excess of one day depending on your 
+# system – parallelise the ITSxpress step as needed.
 
 # Constants
 readonly NUM_THREADS=64           # The number of threads to use for parallel processing
