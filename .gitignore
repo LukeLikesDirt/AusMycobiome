@@ -47,3 +47,15 @@ po/*~
 
 # RStudio Connect folder
 rsconnect/
+
+# macOS ustom attributes
+.DS_Store
+
+# Output files
+output/
+
+# Project data
+bioinformatics/data/
+technical_validation/data/
+bioinformatics/code/tmp_clusters/
+bioinformatics/code/read_track_summary.txt
