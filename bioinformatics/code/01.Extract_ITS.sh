@@ -37,11 +37,11 @@
 
 # Notes:
 # --------------------------------------------------------------------------- #
-# The chosen PCR primers of the Australian Microbiome, ITS1F and ITS4, targeted
-# the full ITS region, leading to two amplicons (i.e. ITS1 for forward 
-# sequences and ITS2 for reverse sequences) from which reads were generally
-# too short to be merged. We therefore focus on forward reads that targt the 
-# ITS1.
+# The PCR primers used in the Australian Microbiome project, ITS1F and ITS4, 
+# were designed to target the full ITS region. This resulted in two amplicons 
+# (ITS1 from forward sequences and ITS2 from reverse sequences), where reads 
+# were generally too short to be merged. Consequently, we focus on forward 
+# reads that target the ITS1 region.
 #
 # Ideally, partially trimmed ITS1 reads (i.e., those containing the SSU region
 # but with the 5.8S region removed) would be retained to capture fungi with long
