@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
-#SBATCH --cpus-per-task=64
+#SBATCH --cpus-per-task=96
 #SBATCH --time=7-00:00:00
 #SBATCH --partition=week
 #SBATCH --output=slurm/%x.%j.out
@@ -55,7 +55,7 @@
 # system – parallelise the ITSxpress step as needed.
 
 # Constants
-readonly NUM_THREADS=64           # The number of threads to use for parallel processing
+readonly NUM_THREADS=96           # The number of threads to use for parallel processing
 readonly FIRST_RUN=1              # The first run to process
 readonly LAST_RUN=42              # The last run to process
 readonly FILE_EXT=".fastq.gz"     # The file extension of the raw reads
