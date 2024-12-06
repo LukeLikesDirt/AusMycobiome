@@ -4,7 +4,7 @@
 
 # Session Data files
 .RData
-.RDataTmp
+.RDataTmp*
 
 # User-specific files
 .Ruserdata
@@ -59,3 +59,6 @@ bioinformatics/data/
 technical_validation/data/
 bioinformatics/code/tmp_clusters/
 bioinformatics/code/read_track_summary.txt
+
+# Devlopment code
+0x.*
