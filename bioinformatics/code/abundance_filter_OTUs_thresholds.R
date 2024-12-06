@@ -7,7 +7,7 @@ require(tidyverse)
 
 ### Threshold 01 ##############################################################
 
-source("abundance_filters.R")
+source("abundance_filter_functions.R")
 
 ### (1) Sample-wise abundance filter ##########################################
 
@@ -17,6 +17,12 @@ source("abundance_filters.R")
 metadata <- fread("../../technical_validation/data/metadata.csv") %>%
   mutate(flow_id = as.character(flow_id)) %>%
   glimpse()
+
+
+# OTUs
+OTUs <- fread(
+  "../data/OTUs/OTUs.txt"
+  )
 
 # Check control sample richness: If samples are clean richness will = 10
 mock_controls <- OTUs %>%
@@ -364,7 +370,7 @@ rm(list = ls())
 
 ### Threshold 02 ##############################################################
 
-source("abundance_filters.R")
+source("abundance_filter_functions.R")
 
 ### (1) Sample-wise abundance filter ##########################################
 
@@ -722,7 +728,7 @@ rm(list = ls())
 
 ### Threshold 05 ##############################################################
 
-source("abundance_filters.R")
+source("abundance_filter_functions.R")
 
 ### (1) Sample-wise abundance filter ##########################################
 
@@ -1080,7 +1086,7 @@ rm(list = ls())
 
 ### Threshold 10 ##############################################################
 
-source("abundance_filters.R")
+source("abundance_filter_functions.R")
 
 ### (1) Sample-wise abundance filter ##########################################
 
@@ -1438,7 +1444,7 @@ rm(list = ls())
 
 ### Threshold 20 ##############################################################
 
-source("abundance_filters.R")
+source("abundance_filter_functions.R")
 
 ### (1) Sample-wise abundance filter ##########################################
 
@@ -1796,7 +1802,7 @@ rm(list = ls())
 
 ### Threshold 50 ##############################################################
 
-source("abundance_filters.R")
+source("abundance_filter_functions.R")
 
 ### (1) Sample-wise abundance filter ##########################################
 
@@ -2154,7 +2160,7 @@ rm(list = ls())
 
 ### Threshold 01_1 #############################################################
 
-source("abundance_filters.R")
+source("abundance_filter_functions.R")
 
 ### (1) Sample-wise abundance filter ##########################################
 
@@ -2513,7 +2519,7 @@ rm(list = ls())
 ### Threshold 02_1 #############################################################
 
 
-source("abundance_filters.R")
+source("abundance_filter_functions.R")
 
 ### (1) Sample-wise abundance filter ##########################################
 
@@ -2871,7 +2877,7 @@ rm(list = ls())
 
 ### Threshold 05_1 #############################################################
 
-source("abundance_filters.R")
+source("abundance_filter_functions.R")
 
 ### (1) Sample-wise abundance filter ##########################################
 
@@ -3229,7 +3235,7 @@ rm(list = ls())
 
 ### Threshold 10_1 #############################################################
 
-source("abundance_filters.R")
+source("abundance_filter_functions.R")
 
 ### (1) Sample-wise abundance filter ##########################################
 
@@ -3587,7 +3593,7 @@ rm(list = ls())
 
 ### Threshold 20_1 #############################################################
 
-source("abundance_filters.R")
+source("abundance_filter_functions.R")
 
 ### (1) Sample-wise abundance filter ##########################################
 
@@ -3944,7 +3950,7 @@ fwrite(
 rm(list = ls())
 
 ### Threshold 50_1 #############################################################
-source("abundance_filters.R")
+source("abundance_filter_functions.R")
 
 ### (1) Sample-wise abundance filter ##########################################
 

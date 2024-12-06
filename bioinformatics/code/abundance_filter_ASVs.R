@@ -22,19 +22,18 @@
 suppressPackageStartupMessages(require(data.table))
 suppressPackageStartupMessages(require(Biostrings))
 suppressPackageStartupMessages(require(tidyverse))
-source("abundance_filters.R")
+source("abundance_filter_functions.R")
 
 # Metadata
 metadata <- fread("../../technical_validation/data/metadata.csv") %>%
   mutate(flow_id = as.character(flow_id)) %>%
   glimpse()
 
-### 1. Read in OTU data #######################################################
-
+# OTUs
 OTUs <- fread(
   "../data/OTUs/ASVs.txt"
   )
-
+  
 ### 1. Sample-wise abundance filter ##########################################
 
 # Read in the OTU table and filter OTUs at 10 in 10,000
