@@ -12,16 +12,16 @@
 
 # Notes:
 # --------------------------------------------------------------------------- #
-#   -   See the associated R scripts for details on script purose.
-#   -   File paths are handeled in the R scripts - this aspect needs updating.
-#   -   The 'ASVs' outputs corresponds to taxonomically informed dynamic 
-#       clustering developed for this project. The 'OTUs' output is used to 
-#       compare results between conventional 97% OTU clustering and the dynamic
-#       clustering.
-#   -   The R code with 'thresholds' suffixes is for compareing results using
-#       a range of filtering threcholds.
-#   -   The R code without the 'thresholds' suffixes uses the chosen abundance
-#       filtering cutoffs.
+# - See the associated R scripts for details on script purose.
+# - File paths are handeled in the R scripts - this aspect needs updating.
+# - The 'ASVs' outputs corresponds to taxonomically informed dynamic 
+#   clustering developed for this project. The 'OTUs' output is used to 
+#   compare results between conventional 97% OTU clustering and the dynamic
+#   clustering.
+# - The R code with 'thresholds' suffixes is for compareing results using
+#   a range of filtering threcholds.
+# - The R code without the 'thresholds' suffixes uses the chosen abundance
+#   filtering cutoffs.
 
 echo "Starting at: $(date)"
 
