@@ -2,7 +2,7 @@
 #SBATCH --nodes=1
 #SBATCH --cpus-per-task=96
 #SBATCH --time=7-00:00:00
-#SBATCH --partition=month
+#SBATCH --partition=week
 #SBATCH --output=slurm/%x.%j.out
 
 # Script: Predict taxonomically guided cutoffs using the dnabarcoder framework
