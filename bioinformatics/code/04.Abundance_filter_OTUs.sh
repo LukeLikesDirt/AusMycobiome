@@ -19,7 +19,9 @@
 #       compare results between conventional 97% OTU clustering and the dynamic
 #       clustering.
 #   -   The R code with 'thresholds' suffixes is for compareing results using
-#       a range of filtering threcholds. 
+#       a range of filtering threcholds.
+#   -   The R code without the 'thresholds' suffixes uses the chosen abundance
+#       filtering cutoffs.
 
 echo "Starting at: $(date)"
 
