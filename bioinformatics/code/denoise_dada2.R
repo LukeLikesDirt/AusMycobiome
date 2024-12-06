@@ -7,17 +7,17 @@
 #
 # Script Purpose
 # --------------------------------------------------------------------------- #
-# This R script is designed for the denoising of Illumina forward reads using 
-# DADA2. The script is designed for "big data" projects, and therefore, performs
-# quality filtering and denoising on sequencing run individually to improve
-# error rate estimations. This script converts the DADA2 'rds' sequence table
-# output to a 'fasta' file for chimera detection and removal in VSEARCH.
+# This R script is designed for the denoising of Illumina forward reads using
+# DADA2. The script is designed for "big data" projects and therefore performs
+# denoising on each sequencing run individually to improve error rate
+# estimations. This script converts the DADA2 'rds' sequence table to a 'fasta'
+# file for chimera detection and removal in VSEARCH.
 #
 # Script Contents:
 # --------------------------------------------------------------------------- #
 #   (1) Denoise the reads
-#   (2) Merges the denoised sequence tables
-#   (3) Convert the sequence table to a FASTA file formatted for VSEARCH
+#   (2) Merges the denoised sequence tables across libraries
+#   (3) Convert the merged sequence table to a FASTA file formatted for VSEARCH
 
 # Required packages
 library(dada2)
@@ -43,8 +43,9 @@ summary_track <- data.frame()
 for (run in 1:num_runs) {
 
   ## Input and output directories
-  qualFilt_dir <- file.path(path, "quality_filtered",
-                            paste0("run", run))
+  qualFilt_dir <- file.path(
+    path, "quality_filtered", paste0("run", run)
+  )
   denoised_dir <- file.path(path, "denoised")
 
   ## Denoising
@@ -59,8 +60,9 @@ for (run in 1:num_runs) {
 
   ## Learn error rates
   set.seed(1986)
-  err <- learnErrors(filts, nbases = 1e8, multithread = TRUE,
-                     randomize = TRUE)
+  err <- learnErrors(
+    filts, nbases = 1e8, multithread = TRUE, randomize = TRUE
+  )
 
   ## Infer sequence variants
   dds <- vector('list', length(sample.names))
@@ -81,9 +83,11 @@ for (run in 1:num_runs) {
   getN <- function(x) sum(getUniques(x))
 
   ## Check if there are rows in the "stats.csv" file
-  track <- data.frame(Run = run,
-                      sample = sample.names,
-                      output = sapply(dds, getN)) %>%
+  track <- data.frame(
+    Run = run,
+    sample = sample.names,
+    output = sapply(dds, getN)
+  ) %>%
     filter(substr(sample, 1, 1) == "s") %>%
     select(-sample) %>%
     as.data.frame()
