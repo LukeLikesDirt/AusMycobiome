@@ -12,7 +12,7 @@
 
 # Notes:
 # --------------------------------------------------------------------------- #
-# The 'OTUs_97' output is used to compare results between conventional 97% OTU 
+# The 'OTUs' output is used to compare results between conventional 97% OTU 
 # clustering and the contemporary taxonomically informed dynamic clustering 
 # developed for this project. The 'ASVs' output corresponds to the output used
 # for dynamic clustering. The 'match_list' output is designed for use with
@@ -127,10 +127,10 @@ generate_OTUs() {
         --id $IDENTITY \
         --strand plus \
         --relabel_sha \
-        --uc "$CLUSTERED_DIR/OTUs_97.uc" \
-        --centroids "$CLUSTERED_DIR/OTUs_97.fasta" \
-        --biomout "$CLUSTERED_DIR/OTUs_97.biom" \
-        --otutabout "$CLUSTERED_DIR/OTUs_97.txt"
+        --uc "$CLUSTERED_DIR/OTUs.uc" \
+        --centroids "$CLUSTERED_DIR/OTUs.fasta" \
+        --biomout "$CLUSTERED_DIR/OTUs.biom" \
+        --otutabout "$CLUSTERED_DIR/OTUs.txt"
 
     # Rename the header in the file
     sed -i '1s/#OTU ID/OTU_ID/' "$CLUSTERED_DIR/ASVs.txt"
