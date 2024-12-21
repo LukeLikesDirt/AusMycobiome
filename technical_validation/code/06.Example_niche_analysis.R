@@ -1,3 +1,4 @@
+require(ggbeeswarm)
 require(emmeans)
 require(performance)
 require(parameters)
@@ -103,16 +104,16 @@ emmargins_breadth_N <- emmeans(lm_breadth_N, specs = ~genus) %>%
 plot_pos_N <- data_N %>%
   mutate(
     `Total nitrogen (%)` = case_when(
-      genus == "Ruhlandiella" ~ marginal_means_N$emmean[1],
-      genus == "Sphaerosoma" ~ marginal_means_N$emmean[2]
+      genus == "Ruhlandiella" ~ emmeans_pos_N$emmean[1],
+      genus == "Sphaerosoma" ~ emmeans_pos_N$emmean[2]
     ),
     upper.CL = case_when(
-      genus == "Ruhlandiella" ~ marginal_means_N$upper.CL[1],
-      genus == "Sphaerosoma" ~ marginal_means_N$upper.CL[2]
+      genus == "Ruhlandiella" ~ emmeans_pos_N$upper.CL[1],
+      genus == "Sphaerosoma" ~ emmeans_pos_N$upper.CL[2]
     ),
     lower.CL = case_when(
-      genus == "Ruhlandiella" ~ marginal_means_N$lower.CL[1],
-      genus == "Sphaerosoma" ~ marginal_means_N$lower.CL[2]
+      genus == "Ruhlandiella" ~ emmeans_pos_N$lower.CL[1],
+      genus == "Sphaerosoma" ~ emmeans_pos_N$lower.CL[2]
     )
   ) %>%
   ggplot() +
@@ -144,6 +145,7 @@ plot_pos_N <- data_N %>%
     shape = 21,
     colour = "black"
   ) +
+  scale_y_continuous(limits = c(0, max(data_N$niche_position))) +
   theme_bw() +
   theme(
     legend.position = "none",
@@ -157,16 +159,6 @@ plot_pos_N <- data_N %>%
   labs(
     y = "Niche position",
     title = "Total nitrogen (%)"
-  ) +
-  annotate(
-    "text",
-    x = -Inf,
-    y = Inf,
-    label = "a",
-    hjust = -0.5,
-    vjust = 1.5,
-    fontface = "bold",
-    size = 6
   ) +
   annotate(
     "text", 
@@ -195,6 +187,7 @@ plot_pos_N <- data_N %>%
     vjust = 4.75, 
     size = 2.5
   )
+print(plot_pos_N)
 
 plot_breadth_N <- data_N %>%
   mutate(
@@ -240,6 +233,7 @@ plot_breadth_N <- data_N %>%
     shape = 21,
     colour = "black"
   ) +
+  scale_y_continuous(limits = c(0, max(data_N$niche_breadth))) +
   theme_bw() +
   theme(
     legend.position = "none",
@@ -250,17 +244,7 @@ plot_breadth_N <- data_N %>%
     aspect.ratio = 1
   ) +
   labs(
-    y = "Nitrogen breadth"
-  ) +
-  annotate(
-    "text",
-    x = -Inf,
-    y = Inf,
-    label = "c",
-    hjust = -0.5,
-    vjust = 1.5,
-    fontface = "bold",
-    size = 6
+    y = "Niche breadth"
   ) +
   annotate(
     "text", 
@@ -289,6 +273,7 @@ plot_breadth_N <- data_N %>%
     vjust = 4.75, 
     size = 2.5
   )
+print(plot_breadth_N)
   
 # (2) P_total_5cm models ########################################################
 
@@ -372,6 +357,7 @@ plot_pos_P <- data_P %>%
     shape = 21,
     colour = "black"
   ) +
+  scale_y_continuous(limits = c(0, max(data_P$niche_position))) +
   theme_bw() +
   theme(
     legend.position = "none",
@@ -385,16 +371,6 @@ plot_pos_P <- data_P %>%
   labs(
     y = "Niche position",
     title = "Total phosphorus (%)"
-  ) +
-  annotate(
-    "text",
-    x = -Inf,
-    y = Inf,
-    label = "b",
-    hjust = -0.5,
-    vjust = 1.5,
-    fontface = "bold",
-    size = 6
   ) +
   annotate(
     "text", 
@@ -423,6 +399,7 @@ plot_pos_P <- data_P %>%
     vjust = 4.75, 
     size = 2.5
   )
+print(plot_pos_P)
 
 plot_breadth_P <- data_P %>%
   mutate(
@@ -468,6 +445,7 @@ plot_breadth_P <- data_P %>%
     shape = 21,
     colour = "black"
   ) +
+  scale_y_continuous(limits = c(0, max(data_P$niche_breadth))) +
   theme_bw() +
   theme(
     legend.position = "none",
@@ -479,16 +457,6 @@ plot_breadth_P <- data_P %>%
   ) +
   labs(
     y = "Niche breadth"
-  ) +
-  annotate(
-    "text",
-    x = -Inf,
-    y = Inf,
-    label = "d",
-    hjust = -0.5,
-    vjust = 1.5,
-    fontface = "bold",
-    size = 6
   ) +
   annotate(
     "text", 
@@ -517,25 +485,49 @@ plot_breadth_P <- data_P %>%
     vjust = 4.75, 
     size = 2.5
       )
-plot_breadth_P
+print(plot_breadth_P)
   
 
 # (3) Wrap and save plots ######################################################
 
-# Wrap the plots
-patchwork::wrap_plots(
-  plot_pos_N + plot_pos_P + plot_breadth_N + plot_breadth_P
-)
+require(patchwork)
+# Create the top panel with labels
+plot_N <- wrap_plots(
+  plot_pos_N,
+  plot_breadth_N,
+  ncol = 1
+) + 
+  plot_annotation(tag_levels = 'a') &
+  theme(plot.tag = element_text(face = 'bold'))
+
+# Create the bottom panel without labels
+plot_P <- wrap_plots(
+  plot_pos_P,
+  plot_breadth_P,
+  ncol = 1
+) + plot_annotation(tag_levels = list(c("")))
+
+# Combine the panels into a single plot
+plot_all <- wrap_plots(
+  plot_N,
+  plot_P,
+  nrow = 1
+) + 
+  plot_layout(guides = 'collect') & 
+  plot_annotation(
+    tag_levels = list(c("a", "b")),
+    tag_prefix = "", tag_sep = "" 
+  )
 
 # Save the plots
 ggsave(
-  filename = "../output/niche_analysis.png",
+  filename = "../output/plots/niche_analysis.png",
   width = 15.75,
   height = 15.75,
   units = "cm"
 )
 ggsave(
-  filename = "../output/niche_analysis.tiff",
+  filename = "../output/plots/niche_analysis.tiff",
   width = 15.75,
   height = 15.75,
   units = "cm"
