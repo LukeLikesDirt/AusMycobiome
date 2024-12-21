@@ -1,12 +1,9 @@
 
-# Difference in ITS extraction method on diversirty of distinct groups
+# Difference in ITS extraction method on diversity of distinct groups
 
 # (1) ITS method comparison ########################################################
 
-library(ggplot2)
-library(dplyr)
-library(tidyr)
-
+require(tidyverse)
 
 # Combined sample data with updated and reverted values
 combined_rank_data <- data.frame(
