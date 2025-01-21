@@ -2,7 +2,7 @@
 
 This repository contains the code associated to the paper:
 
-**The Australian Microbiome dataset for accurate detection and ecological modelling of fungi**
+**A curated dataset for accurate detection of soil fungi to advance ecological research and conservation in Australia and Antarctica**
 
 Authors:
 
