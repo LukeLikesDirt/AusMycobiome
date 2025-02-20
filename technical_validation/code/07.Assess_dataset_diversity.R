@@ -168,8 +168,7 @@ taxa <- select(phylum, class, order, family, genus, OTU_ID, abundance) %>%
   fwrite("../output/krona_australian.txt", sep = "\t")
 
 # Antarctic Krona chart
-
-select(phylum, class, order, family, genus, OTU_ID, abundance) %>%
+taxa %>% select(phylum, class, order, family, genus, OTU_ID, abundance) %>%
   mutate(
     # Replace all strings containing "pseudo" with "unidentified"
     across(c(phylum, class, order, family, genus), ~ if_else(str_detect(.x, "pseudo"), "unidentified", .x)),
@@ -257,8 +256,8 @@ genus_diversity %>%
     genus,
     `Guild` = primary_lifestyle,
     Richness = richness, 
-    `Relative abundance (%)` =  relative_abundance,
-    `Sample prevalence (%)` = prevalence,
+    `Relative Abundance (%)` =  relative_abundance,
+    `Sample Prevalence (%)` = prevalence,
     ) %>%
   pivot_longer(
     cols = -c(genus, `Guild`),
@@ -266,24 +265,24 @@ genus_diversity %>%
     values_to = "value"
   ) %>%
   mutate(
-    metric = factor(metric, levels = c("Richness", "Relative abundance (%)", "Sample prevalence (%)")),
+    metric = factor(metric, levels = c("Richness", "Relative Abundance (%)", "Sample Prevalence (%)")),
     genus = factor(genus, levels = genus_diversity$genus),
     `Guild` = case_when(
-      `Guild` == "plant_pathogen" ~ "Plant pathogen",
+      `Guild` == "plant_pathogen" ~ "Plant Pathogen",
       `Guild` == "arbuscular_mycorrhizal" ~ "Arbuscular Mycorrhizal",
       `Guild` == "ectomycorrhizal" ~ "Ectomycorrhizal",
-      `Guild` == "soil_saprotroph" ~ "Soil saprotroph",
+      `Guild` == "soil_saprotroph" ~ "Soil Saprotroph",
       TRUE ~ "Unclassified"
     )
   ) %>%
   ggplot(aes(x = genus, y = value, fill = `Guild`)) +
   geom_col() +
   facet_wrap(~metric, scales = "free_y") +
-  scale_fill_brewer(palette = "Pastel1") +
+  scale_fill_brewer(palette = "Set2") +
   theme_bw() +
   theme(
     legend.position = "bottom",
-    axis.text.x = element_text(angle = 45, hjust = 1, size = rel(1.1)),
+    axis.text.x = element_text(angle = 45, hjust = 1, size = rel(1)),
     strip.text = element_text(face = "bold"),
     strip.background = element_blank(),
     panel.grid = element_blank(),
@@ -303,6 +302,12 @@ ggsave(
 )
 ggsave(
   filename = "../output/plots/genus_diversity.tiff",
+  width = 15,
+  height = 9,
+  units = "cm",
+)
+ggsave(
+  filename = "../output/plots/genus_diversity.svg",
   width = 15,
   height = 9,
   units = "cm",
