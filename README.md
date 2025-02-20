@@ -50,61 +50,71 @@ The taxonomic and functional annotations have been rigorously evaluated using st
 ### Bionformatics
 
 **Notes:** 
-* The reproducible code for the bioinformatics pipeline are available in the `bioinformatics` directory and are run from source directory.
+* The reproducible code for the bioinformatics pipeline are available in the `bioinformatics` directory and are run from the source directory.
 * The associated raw data files can be obtained from the [Bioplatforms Australia data portal](https://data.bioplatforms.com/organization/australian-microbiome) by using the search terms “sample_type:Soil & amplicon:ITS & depth_lower:0.1”.
 * The dependencies required to reproduce this research can be installed by via mamba and the `env/dynamic_cluster.yml` file.
-* This pipeline has been designed to be reproducible. However, this is a first draft of the taxonomically informed dynamic clustering and some troubleshooting will be required for reproducibility (i.e. to run the pipeline on new datasets).
+* This pipeline has been designed to be reproducible. However, this is a first draft of the taxonomically informed dynamic clustering and the code will require some trouble shooting to be replicable to distinct datasets.
 * After organising the raw data, the scripts with numeric prefixes should be run in numeric order to reproduce the results. Scripts without numeric prefixes are auxiliary code.
 
-**01.Extract_ITS.sh** performs five functions:
+**01.Extract_ITS.sh**:
 1. Quality truncate reads with Trimmomatic
 2. Extract the ITS region with ITSxpress
 3. Quality filter reads with VSEARCH
 4. Check the quality of processed reads with FastQC and MultiQC
 5. Track reads across the pipeline (library-wise approach)
 
-**02.Denoise.R** performs the following tasks:
+**02.Denoise.R**:
 1. Denoise reads with DADA2
 2. Merge sequence tables from multiple sequencing runs
 3. Convert the merged sequence table to a FASTA sequence file formatted for chimera detection in VSEARCH
 
-**03.Chimera_detection.sh** performs two main tasks:
-1. De novo chimera detection with VSEARCH
+**03.Chimera_detection.sh**:
+1. *De novo* chimera detection with VSEARCH
 2. Reference-based chimera detection with VSEARCH
-*Note:* There are two distinct output from this and subsequent steps: (1) an `ASVs` and `OTUs` output. The `ASVs` are have ASVs that are clustered after taxonomic assignment using a taxonomically informed dynamic clustering approach and the `OTUs are clustered in this step at 97% similarity using an abundance-based centroid approach in VSEARCH. The main data output from this project uses the dynamic clusters. (i.e. the ASV files from this step) and the OTU files are intended for comparative analyses between the conventional 97% OTU approach and the dynamic clustering approach we chose to use.
+
+*Note:* There are two distinct output from this step and subsequent steps: (1) an `ASVs` output and (2) an `OTUs` output. The `ASVs` are clustered after taxonomic assignment using a taxonomically informed dynamic clustering approach and the `OTUs are within this chimera detections step at 97% similarity, using an abundance-based centroid approach in VSEARCH. The main data output from this project uses the dynamic clusters (i.e. the ASVs outptut) and the OTU files were intended for comparative analyses between the conventional 97% OTU approach and the dynamic clustering approach we chose to use.
 
 **04.Abundance_filter_OTUs**
 1. Sample-wise abundance filter of OTUs in each sample based on relative abundance <0.1% of the total sequence count per sample
 2. Library-wise abundance filter of each OTU with a relative sequence abundance <0.5% of the total OTU within a given library
 3. Positive control filter of remove positive control OTUs with a relative sequence abundance <3% of the total positive control OTU within a given library
-4. Dereplicate samples and remove samples with sequencing deopth <5,000 reads
+4. Dereplicate samples and remove samples with sequencing depth <5,000 reads
 
-**05.Predict_cutoffs.sh** downloads the UNITE+INSD reference dataset used in this study and extracts the ITS1 region for use in chimera detection and taxonomic assignment.
+**05.Predict_cutoffs.sh**
+* Predict similarity score cut-offs for assigning taxonomy to ASVs and clustering ASVs into OTUs.
 
-**06.BLAST.sh** assigns top five BLAST hits to ASVs and OTUs using the UNITE+INSD reference dataset.
+**06.BLAST.sh**
+* Assign top five BLAST hits to ASVs and OTUs using the UNITE+INSD reference dataset.
 
-**07.Classify_OTUs.sh** Filter BLAST top five hits based on taxon-specific thresholds, coverage thresholds for genus (90%) and species (95%), and then affiliate taxonomy to ASVs and OTUs to the best hit at each rank using 66.67% consensus threshold across the all remaining hits. 
+**07.Classify_OTUs.sh**
+* Filter the BLAST top five hits based on taxon-specific thresholds, coverage thresholds for genus (90%) and species (95%), and then affiliates taxonomy to ASVs and OTUs using 66.67% consensus threshold across the all remaining hits. 
 
-**08.Dynamic_clustering.sh** Cluster OTUs using a taxonomically informed dynamic clustering approach
+**08.Dynamic_clustering.sh**
+* Cluster OTUs using a taxonomically informed dynamic clustering approach and the cut-offs predicted in `05.Predict_cutoffs.sh`
 
 ### Tchnical validation
 
 **Note:**
 * Code associated with the technical validation are available in the `technical_validation` directory and are executable from within the R project.
 
-**01.Assess_length_bias.R**: Assess sequences length distribution of the ITS region in the Australian Microbiome dataset against the UNITE+INSD reference dataset.
+**01.Assess_length_bias.R**
+* Assess sequences length distribution of the ITS region in the Australian Microbiome dataset against the UNITE+INSD reference dataset.
 
-**02.Impact_of_ITS_extraction.R**: Assess the impact of ITS extraction on biases against taxon with long ITS regions. We processed 300 bp sequences targeting the fungal ITS1 region, removing conserved SSU and 5.8S rRNA sequences to enhance OTU clustering and taxonomic accuracy. Using ITSxpress for ITS1 extraction, we noted that the inability to merge paired-end reads in the Australian Microbiome fungal dataset biases against taxa with long ITS1 regions (>230 bp), leading to potential false negatives. This script identifies taxa with long ITS1 regions that are underrepresented in the Australian Microbiome dataset.
+**02.Impact_of_ITS_extraction.R**
+* Assess the impact of ITS extraction on biases against taxon with long ITS regions. We processed 300 bp sequences targeting the fungal ITS1 region, removing conserved SSU and 5.8S rRNA sequences to enhance OTU clustering and taxonomic accuracy. Using ITSxpress for ITS1 extraction, we noted that the inability to merge paired-end reads in the Australian Microbiome fungal dataset biases against taxa with long ITS1 regions (>230 bp), leading to potential false negatives. This script identifies taxa with long ITS1 regions that are underrepresented in the Australian Microbiome dataset.
 
-**03.Quantify_ECM_in_antarctica.R**: Evaluate the occurrence of ectomycorrhizal OTUs in Antarctica.
+**03.Quantify_ECM_in_antarctica.R**
+* Evaluate the occurrence of ectomycorrhizal OTUs in Antarctica (environment check for index switching).
 
-**04.Map_cortinarius.R**: Map the distribution of Cortinarius species in Australia.
+**04.Map_cortinarius.R**
+* Map the distribution of *Cortinarius* species in Australia (environment check for index switching).
 
-**05.Map_amanita.R**: Map the distribution of Amanita species in Australia.
+**05.Map_amanita.R**: 
+* Map the distribution of *Amanita* species in Australia and interrogate species level assignments for *Amanita*.
 
 **06.Example_niche_analysis.R**: Test differences in the soil total nitrogen and phosphorus niches of two hypogeous (belowground) ectomycorrhizal genera from the order Pezizales: Ruhlandiella and Sphaerosoma.
 
-**07.Assess_dataset_diversity.R**:
+**07.Assess_dataset_diversity.R**: General diversity assessment.
 
 **Technical validation dependencies**
 
