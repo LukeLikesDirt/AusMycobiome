@@ -52,18 +52,21 @@ unique(taxa_australia_described$class)
 ### (1b) Australian Microbiome data ####
 sequences_ausmic <- readDNAStringSet("../output/sequences.fasta")
 taxa_ausmic <- fread("../output/taxonomy.txt") %>%
-  select(OTU_ID, phylum, class, genus, species) %>%
+  select(OTU_ID, phylum, class, genus, species, primary_lifestyle) %>%
   left_join(taxa_match, by = c("species" = "old_name")) %>%
   mutate(
     species = str_replace(species, "_", " "),
     species = case_when(
-      !is.na(new_name) ~ new_name,  # When species matches old_name, take new_name
+      !is.na(new_name)~ new_name,  # When species matches old_name, take new_name
       TRUE ~ species  # Otherwise, keep the original species name
     ),
-    genus = word(species, 1)
+    genus = case_when(
+      species != "unidentified" ~ word(species, 1),
+      TRUE ~ genus
+    )
   ) %>%
   select(-new_name)
-
+  
 ### (1c) UNITE data with unique sequences ####
 sequences_unite <- readDNAStringSet("data/UNITE_2024/unite2024ITS1.unique.fasta")
 taxa_unite <- fread("data/UNITE_2024/unite2024ITS1.classification") %>%
@@ -189,6 +192,9 @@ length_distributions_plots <- ggplot(length_data_combined, aes(x = length, fill 
   ) + 
   facet_wrap(~group)
 
+# Print the plot
+print(length_distributions_plots)
+
 ggsave("../output/plots/length_distributions.png", length_distributions_plots, width = 15.75, height = 12, units = "cm")
 ggsave("../output/plots/length_distributions.tiff", length_distributions_plots, width = 15.75, height = 12, units = "cm")
 
@@ -259,7 +265,7 @@ length_bias_classes <- length_data_australian_classes %>%
   theme_bw() +
   scale_y_discrete(limits=rev) +
   scale_x_continuous(
-    limits = c(50, 350),
+    limits = c(50, 380),
     breaks = c(100, 200, 300)) +
   ylab(NULL) +
   xlab(expression("Mean sequence length (±"*italic(SD)*")")) +
@@ -369,6 +375,9 @@ length_bias_agaricomycetes_ecm <- length_data_australian_ecm %>%
   ) +
   annotate("text", x = 50, y = 20, label = "b", fontface = "bold", size = 5, hjust = 0, vjust = 1)
 
+# Print the plot
+print(length_bias_agaricomycetes_ecm)
+
 # Plot top 10 non-ascomycota ECM from Australia
 length_bias_ascomycota_ecm <- length_data_australian_ecm %>%
   filter(class != "Agaricomycetes") %>%
@@ -399,6 +408,9 @@ length_bias_ascomycota_ecm <- length_data_australian_ecm %>%
     axis.title.x = element_blank()
   ) +
   annotate("text", x = 50, y = 10, label = "c", fontface = "bold", size = 5, hjust = 0, vjust = 1)
+
+# Print the plot
+print(length_bias_ascomycota_ecm)
 
 ### (3c) Length bias AM fung i####
 
@@ -491,6 +503,9 @@ length_bias_am <- length_data_australian_am %>%
     # legend.margin = margin(t = 0, r = 0, b = 0, l = 0)
   ) +
   annotate("text", x = 50, y = 5, label = "d", fontface = "bold", size = 5, hjust = 0, vjust = 1)
+
+# Print the plot
+print(length_bias_am)
 
 ### (3d) Join the plots ####
 
