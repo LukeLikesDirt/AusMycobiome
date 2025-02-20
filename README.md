@@ -4,11 +4,11 @@ This repository contains the code associated to the paper:
 
 [**A curated soil fungal dataset to advance fungal ecology and conservation research in Australia and Antarctica**](https://doi.org/10.1038/s41597-025-04598-5)
 
-Authors:
+**Authors:**
 
 Luke Florence<sup>1</sup>, Sean Tomlinson<sup>2,3</sup>, Marc Freestone<sup>4</sup>, John W. Morgan<sup>1</sup>, Jen L. Wood<sup>5</sup>, Camille Truong<sup>6</sup>
 
-Affiliations:
+**Affiliations:**
 1. Department of Environment, Plant and Animal Science, La Trobe University, Bundoora, VIC, 3083, Australia.
 2. Biodiversity and Conservation Science, Department of Biodiversity, Conservation and Attractions, Kensington, WA, 6151, Australia.
 3. School of Biological Sciences, University of Adelaide, Adelaide, SA, 5000, Australia.
@@ -30,7 +30,7 @@ Primary data products from this analysis are available on the dedicated [figshar
 7. [A taxonomy file without pseudotaxon names (i.e. pseudotaxa renamed to ‘unidentified’)](https://doi.org/10.6084/m9.figshare.27938037))
 8. [An interactive KRONA chart showing the taxonomic distribution the contemporary Australian Microbiome dataset from our study](https://doi.org/10.6084/m9.figshare.27938037))
 
-**NOTE:**Example code for sub-setting the dataset to specific taxa of interest is available [here](https://github.com/LukeLikesDirt/AusMycobiome/blob/main/technical_validation/code/filter_specific_taxa.R)
+**Note:** Example code for sub-setting the dataset to specific taxa of interest is available [here](https://github.com/LukeLikesDirt/AusMycobiome/blob/main/technical_validation/code/filter_specific_taxa.R)
 
 ## Overview
 
