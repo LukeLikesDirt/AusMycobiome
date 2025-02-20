@@ -112,9 +112,11 @@ The taxonomic and functional annotations have been rigorously evaluated using st
 **05.Map_amanita.R**: 
 * Map the distribution of *Amanita* species in Australia and interrogate species level assignments for *Amanita*.
 
-**06.Example_niche_analysis.R**: Test differences in the soil total nitrogen and phosphorus niches of two hypogeous (belowground) ectomycorrhizal genera from the order Pezizales: Ruhlandiella and Sphaerosoma.
+**06.Example_niche_analysis.R**: 
+* Test differences in the soil total nitrogen and phosphorus niches of two hypogeous (belowground) ectomycorrhizal genera from the order Pezizales: Ruhlandiella and Sphaerosoma.
 
-**07.Assess_dataset_diversity.R**: General diversity assessment.
+**07.Assess_dataset_diversity.R**: 
+* General diversity assessment.
 
 **Technical validation dependencies**
 
