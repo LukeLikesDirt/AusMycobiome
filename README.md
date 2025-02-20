@@ -1,15 +1,15 @@
-# The Australian Microbiome dataset for soil fungi
+# A curated Australian Microbiome dataset for soil fungi
 
 This repository contains the code associated to the paper:
 
-**A curated dataset for accurate detection of soil fungi to advance ecological research and conservation in Australia and Antarctica**
+[**A curated soil fungal dataset to advance fungal ecology and conservation research in Australia and Antarctica**](https://doi.org/10.1038/s41597-025-04598-5)
 
 Authors:
 
 Luke Florence<sup>1</sup>, Sean Tomlinson<sup>2,3</sup>, Marc Freestone<sup>4</sup>, John W. Morgan<sup>1</sup>, Jen L. Wood<sup>5</sup>, Camille Truong<sup>6</sup>
 
 Affiliations:
-1. Department of Environment and Genetics, La Trobe University, Bundoora, VIC, 3083, Australia.
+1. Department of Environment, Plant and Animal Science, La Trobe University, Bundoora, VIC, 3083, Australia.
 2. Biodiversity and Conservation Science, Department of Biodiversity, Conservation and Attractions, Kensington, WA, 6151, Australia.
 3. School of Biological Sciences, University of Adelaide, Adelaide, SA, 5000, Australia.
 4. The Biodiversity Consultancy, Cambridge, CB2 1SJ, United Kingdom.
@@ -18,11 +18,32 @@ Affiliations:
 
 Corresponding author: Luke Florence (L.Florence@latrobe.edu.au)
 
+## Data products
+
+Primary data products from this analysis are available on the dedicated [figshare repository](https://doi.org/10.6084/m9.figshare.27938037) in eight files:
+1. [A sample metadata file](https://doi.org/10.6084/m9.figshare.27938037))
+2. [Sample metadata descriptor](https://doi.org/10.6084/m9.figshare.27938037))
+3. [Sample-by-OTU matrix with absolute sequence abundances](https://doi.org/10.6084/m9.figshare.27938037))
+4. [Sample-by-OTU matrix normalised to a minimum sequencing depth (5000 reads)](https://doi.org/10.6084/m9.figshare.27938037))
+5. [Quality-filtered ITS1 sequences in FASTA format](https://doi.org/10.6084/m9.figshare.27938037))
+6. [A taxonomy file with pseudotaxon names (pseudotaxa are are approximate clusters of unidetified taxa from rank phylum to species)](https://doi.org/10.6084/m9.figshare.27938037))
+7. [A taxonomy file without pseudotaxon names (i.e. pseudotaxa renamed to ‘unidentified’)](https://doi.org/10.6084/m9.figshare.27938037))
+8. [An interactive KRONA chart showing the taxonomic distribution the contemporary Australian Microbiome dataset from our study](https://doi.org/10.6084/m9.figshare.27938037))
+
+**NOTE:**Example code for sub-setting the dataset to specific taxa of interest is available [here](https://github.com/LukeLikesDirt/AusMycobiome/blob/main/technical_validation/code/filter_specific_taxa.R)
+
 ## Overview
 
-DNA metabarcoding has played a pivotal role in advancing our understanding of the diversity and function of soil-inhabiting fungi. The [Australian Microbiome Initiative](https://www.australianmicrobiome.com/) has produced an extensive soil fungal metabarcoding dataset of more than 2000 plots across a breadth of ecosystems in Australia and Antarctica. Sequence data requires rigorous approaches for the integration of species occurrences into biodiversity platforms, addressing biases due to false positives and overinflated diversity estimates, among others. To address such biases, we conducted a rigorous analysis of the fungal dataset following best practices in fungal metabarcoding and paired this dataset with over 100 predictor variables to fast-track data exploration. We carefully validated our methodology based on studies conducted on historical versions of the dataset. Our approach generated robust information on Australian soil fungi that can be leveraged by end-users interested in biodiversity, biogeography, and conservation.
+DNA metabarcoding has played a pivotal role in advancing our understanding of the diversity and function of soil-inhabiting fungi. The [Australian Microbiome Initiative](https://www.australianmicrobiome.com/) has produced an extensive soil fungal metabarcoding dataset of more than 2000 plots across a breadth of ecosystems in Australia and Antarctica. Sequence data requires rigorous approaches for the integration of species occurrences into biodiversity platforms to address biases introduced during sample processing. To address such biases, we conducted a rigorous analysis of the fungal dataset following best practices in fungal metabarcoding and paired this dataset with over 100 predictor variables to fast-track data exploration. We carefully validated our methodology based on studies conducted on historical versions of the dataset. Our approach generated robust information on Australian soil fungi that can be leveraged by end-users interested in biodiversity, biogeography, and conservation.
 
-The primary data products from this analysis are available on the associated [figshare repository](https://doi.org/10.6084/m9.figshare.27938037).
+## Usage Notes
+The contemporary Australian Microbiome dataset we generated is ready-to-use for detecting and ecological modelling in Australia and Antarctica. To account for differences in sequence depth in abundance-based analyses, a normalised OTU-by-sample matrix is provided. This dataset can be employed without further bioinformatic manipulation or specialised expertise in fungal taxonomy and is especially suited as presence-only data for examining fungal occurrences and distributions. Note that our conservative quality-filtering approach may have led to some underestimation of fungal diversity and potential false absences. With this in mind, we recommend that researchers using this dataset for diversity analyses:
+
+1. Exclude samples with mould contamination exceeding 35% to mitigate its negative effect on fungal OTU richness (see Fig. 9 in the manuscript).
+2. Consider that rarefaction might be necessary for Antarctic samples, though it may not be required for Australian samples (see Fig. 8 in the manuscript).
+3. Bear in mind that the detection rate and diversity of early diverging fungi, as well as fungal groups with long ITS1 regions, could be disproportionately underestimated (see Figs. 4–7 in the manuscript).
+
+The taxonomic and functional annotations have been rigorously evaluated using state-of-the-art methods for taxonomic assignment and functional reference databases, ensuring robust OTU annotations that overcome any inherent quality issues in the raw data. We therefore advocate for integrating our contemporary Australian Microbiome dataset into biodiversity platforms such as the ALA and GBIF, thereby unlocking its immense potential to advance fungal biodiversity and ecological research from local to global scales.
 
 ## Repository contents
 
@@ -32,8 +53,8 @@ The primary data products from this analysis are available on the associated [fi
 * The reproducible code for the bioinformatics pipeline are available in the `bioinformatics` directory and are run from source directory.
 * The associated raw data files can be obtained from the [Bioplatforms Australia data portal](https://data.bioplatforms.com/organization/australian-microbiome) by using the search terms “sample_type:Soil & amplicon:ITS & depth_lower:0.1”.
 * The dependencies required to reproduce this research can be installed by via mamba and the `env/dynamic_cluster.yml` file.
-* This pipeline has been designed to be reproducible. However, this is a first draft of the taxonomically informed dynamic clustering and some troubleshooting will be required for replicability (i.e. to run the pipeline on new datasets).
-* After organising the raw data, the scripts with numeric preifixes should be run in numeric order to reproduce the results. Scripts without numeric prefixes are auxiliary code.
+* This pipeline has been designed to be reproducible. However, this is a first draft of the taxonomically informed dynamic clustering and some troubleshooting will be required for reproducibility (i.e. to run the pipeline on new datasets).
+* After organising the raw data, the scripts with numeric prefixes should be run in numeric order to reproduce the results. Scripts without numeric prefixes are auxiliary code.
 
 **01.Extract_ITS.sh** performs five functions:
 1. Quality truncate reads with Trimmomatic
@@ -50,7 +71,7 @@ The primary data products from this analysis are available on the associated [fi
 **03.Chimera_detection.sh** performs two main tasks:
 1. De novo chimera detection with VSEARCH
 2. Reference-based chimera detection with VSEARCH
-*Note:* There are two distinct output from this and subsequent steps: (1) an `ASVs` and `OTUs` output. The `ASVs` are have ASVs that are clustered after taxonomic assignment using a taxonomically informed dynamic clustering approach and the `OTUs are clustered in this step at 97% similarity using an abundance-based centroid approach in VSEARCH. The main data output from this project uses the dynamic clusters. (ie.e the ASV files from this step) and the OTU files are intended for comparative analyses between the conventional 97% OTU approach and the dynamic clustering approach we chose to use.
+*Note:* There are two distinct output from this and subsequent steps: (1) an `ASVs` and `OTUs` output. The `ASVs` are have ASVs that are clustered after taxonomic assignment using a taxonomically informed dynamic clustering approach and the `OTUs are clustered in this step at 97% similarity using an abundance-based centroid approach in VSEARCH. The main data output from this project uses the dynamic clusters. (i.e. the ASV files from this step) and the OTU files are intended for comparative analyses between the conventional 97% OTU approach and the dynamic clustering approach we chose to use.
 
 **04.Abundance_filter_OTUs**
 1. Sample-wise abundance filter of OTUs in each sample based on relative abundance <0.1% of the total sequence count per sample
