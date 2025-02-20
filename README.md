@@ -104,10 +104,10 @@ The taxonomic and functional annotations have been rigorously evaluated using st
 * Assess the impact of ITS extraction on biases against taxon with long ITS regions. We processed 300 bp sequences targeting the fungal ITS1 region, removing conserved SSU and 5.8S rRNA sequences to enhance OTU clustering and taxonomic accuracy. Using ITSxpress for ITS1 extraction, we noted that the inability to merge paired-end reads in the Australian Microbiome fungal dataset biases against taxa with long ITS1 regions (>230 bp), leading to potential false negatives. This script identifies taxa with long ITS1 regions that are underrepresented in the Australian Microbiome dataset.
 
 **03.Quantify_ECM_in_antarctica.R**
-* Evaluate the occurrence of ectomycorrhizal OTUs in Antarctica (environment check for index switching).
+* Evaluate the occurrence of ectomycorrhizal OTUs in Antarctica (environmental check for index switching).
 
 **04.Map_cortinarius.R**
-* Map the distribution of *Cortinarius* species in Australia (environment check for index switching).
+* Map the distribution of *Cortinarius* species in Australia (environmental check for index switching).
 
 **05.Map_amanita.R**: 
 * Map the distribution of *Amanita* species in Australia and interrogate species level assignments for *Amanita*.
