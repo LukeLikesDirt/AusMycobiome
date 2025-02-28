@@ -21,14 +21,14 @@ Corresponding author: Luke Florence (L.Florence@latrobe.edu.au)
 ## Data products
 
 Primary data products from this analysis are available on the dedicated [figshare repository](https://doi.org/10.6084/m9.figshare.27938037) in eight files:
-1. [A sample metadata file](https://doi.org/10.6084/m9.figshare.27938037)
-2. [Sample metadata descriptor](https://doi.org/10.6084/m9.figshare.27938037)
-3. [Sample-by-OTU matrix with absolute sequence abundances](https://doi.org/10.6084/m9.figshare.27938037)
-4. [Sample-by-OTU matrix normalised to a minimum sequencing depth (5000 reads)](https://doi.org/10.6084/m9.figshare.27938037)
-5. [Quality-filtered ITS1 sequences in FASTA format](https://doi.org/10.6084/m9.figshare.27938037)
-6. [A taxonomy file with pseudotaxon names (pseudotaxa are are approximate clusters of unidetified taxa from rank phylum to species)](https://doi.org/10.6084/m9.figshare.27938037)
-7. [A taxonomy file without pseudotaxon names (i.e. pseudotaxa renamed to ‘unidentified’)](https://doi.org/10.6084/m9.figshare.27938037)
-8. [An interactive KRONA chart showing the taxonomic distribution the contemporary Australian Microbiome dataset from our study](https://doi.org/10.6084/m9.figshare.27938037)
+1. [A sample metadata file](https://springernature.figshare.com/ndownloader/files/50907762)
+2. [Sample metadata descriptor](https://springernature.figshare.com/ndownloader/files/50909103)
+3. [Sample-by-OTU matrix with absolute sequence abundances](https://springernature.figshare.com/ndownloader/files/50905818)
+4. [Sample-by-OTU matrix normalised to a minimum sequencing depth (5000 reads)](https://springernature.figshare.com/ndownloader/files/50907687)
+5. [Quality-filtered ITS1 sequences in FASTA format](https://springernature.figshare.com/ndownloader/files/50907960)
+6. [A taxonomy file with pseudotaxon names (pseudotaxa are are approximate clusters of unidetified taxa from rank phylum to species)](https://springernature.figshare.com/ndownloader/files/50909094)
+7. [A taxonomy file without pseudotaxon names (i.e. pseudotaxa renamed to ‘unidentified’)](https://springernature.figshare.com/ndownloader/files/50907639)
+8. [An interactive KRONA chart showing the taxonomic distribution the contemporary Australian Microbiome dataset from our study](https://springernature.figshare.com/ndownloader/files/50909040)
 
 **Note:** Example code for sub-setting the dataset to specific taxa of interest is available [here](https://github.com/LukeLikesDirt/AusMycobiome/blob/main/technical_validation/code/filter_specific_taxa.R)
 
